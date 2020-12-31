@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<!--
+    run main component to use robot. 
+    important things are Lidar, joy controller, safety sensors, urdf, t265 camera, and twist_mux
+
+    TODO: add twist mux config in this bringup folder and add arg to twist mux include
+-->
+
+<launch>
+    <!-- robot's velocity and acceleration limit -->
+    <param name="/config/limit_lin_vel" value="0.5"/>
+    <param name="/config/limit_ang_vel" value="1.6"/>
+    <param name="/config/limit_lin_acc" value="0.5"/>
+    <param name="/config/limit_ang_acc" value="1.6"/>
+    <param name="/config/forward_factor" value="1.0"/>
+    <param name="/config/backward_factor" value="1.0"/>
+    <param name="/config/spin_factor" value="1.0"/>
+    <param name="/config/ultrasonic_limit" value="0.0"/>
+    <param name="/config/omni" value="false"/>
+    
+   
+    <node pkg="coconut_bringup" type="robot_to_pose.py" name="tf_to_pose">
+    </node>
+
+    <arg name="use_quadratic_profile" default="true"/>
+
+    <group unless="$(arg use_quadratic_profile)">
+        <node pkg="coconut_control" type="velocity_filter.py" name="velocity_filter" output="screen">
+            <param name="freq" value="50"/>
+        </node>
+    </group>
+    <group if="$(arg use_quadratic_profile)">
+        <node pkg="coconut_control" type="quadratic_velocity_profile.py" name="SCurveVel" output="screen" />
+    </group>
+
+    <node pkg="coconut_control" type="rk4_odometry.py" name="wheel_odometry_builder" output="screen">
+        <param name="freq" value="10"/>
+    </node>
+
+    <!-- <node pkg="coconut_bringup" type="recall_rosserial_python.py" name="recall_rosserial_python_node"/> -->
+    <!-- <node pkg="coconut_control" type="safety_manager.py" name="safety_manager">
+        <param name="stop_dist" value="-999"/>
+	<param name="stop_dist" value="0.2"/>
+        <param name="normal_speed" value="0.6"/>
+        <param name="brightness" value="5"/>
+    </node> -->
+
+    <!-- rplidar s1 or ydlidar TG30. change in lidar.launch file -->
+    <include file="$(find coconut_bringup)/launch/lidar.launch" />
+
+    <!-- Bumper and Ultrasonic -->
+    <include file="$(find coconut_sensor)/launch/sensor_bringup.launch" />
+    
+
+    <include file="$(find coconut_control)/launch/joy_js.launch" >
+        <arg name="joy_port" value="js0" />
+    </include>
+
+    <include file="$(find coconut_bringup)/launch/description.launch" />
+    <include file="$(find coconut_bringup)/launch/rs_t265.launch" /> 
+    <!-- <include file="$(find coconut_bringup)/launch/rs_d415.launch" /> -->
+
+    <node pkg="coconut_bringup" type="odom_filtered.py" name="odom_filtered_node">
+    </node>
+
+    <!-- TWIST MUX NODE -->
+    <!-- order the priority of each velocity command --> 
+    <include file="$(find twist_mux)/launch/twist_mux.launch" >
+        <arg name="config_locks"  default="$(find coconut_bringup)/twist_mux_config/twist_mux_locks.yaml"/>
+        <arg name="config_topics" default="$(find coconut_bringup)/twist_mux_config/twist_mux_topics.yaml"/>
+        <arg name="config_joy" default="$(find coconut_bringup)/twist_mux_config/joystick.yaml"/>
+    </include>
+
+</launch>

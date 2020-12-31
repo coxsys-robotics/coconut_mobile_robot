@@ -1,0 +1,37 @@
+# footprint: [[0.376,-0.281], [0.376,0.281], [-0.376,0.281], [-0.376,-0.281] ] # Padded 5cm
+footprint: [[0.326,-0.260],[0.326,0.260],[-0.326,0.260],[-0.326,-0.260]]
+
+
+transform_tolerance: 0.2
+map_type: costmap
+
+
+obstacle_layer:
+  enabled: true
+  obstacle_range: 5.5
+  #4.0
+  raytrace_range: 6.0
+  #5.5
+  track_unknown_space: true
+  combination_method: 1
+
+  observation_sources: laser_scan_sensor
+  laser_scan_sensor: {data_type: LaserScan, topic: scan_filtered, marking: true, clearing: true}
+
+  inflation_radius: 0.32 
+  #1.75
+  cost_scaling_factor: 1.0 
+  #2.58
+
+inflation_layer:
+  enabled:              true
+  cost_scaling_factor:  10.0 
+  #2.58 # exponential rate at which the obstacle cost drops off (default: 10)
+  inflation_radius:     0.28 
+  #1.75 # max. distance from an obstacle at which costs are incurred for planning paths.
+  inflate_unknown: true
+
+static_layer:
+  enabled:              false
+  trinary_costmap:      false
+  map_topic:            "/map_static"

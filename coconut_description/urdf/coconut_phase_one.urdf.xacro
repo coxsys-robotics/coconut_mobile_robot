@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<robot name="coconut"  xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <link name="base_footprint"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <!-- <origin xyz="-0.3195 -0.081 -0.085" rpy="0 0 0" />  -->
+  </joint>
+
+  <joint name="tracking_camera_joint" type="fixed">
+    <origin xyz="-0.3195 -0.0081 0.0" rpy="0 0 3.14159265" /> 
+    <parent link="t265_link"/>
+    <child link="base_footprint" />
+  </joint>
+
+  <joint name="tracking_pose_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" /> 
+    <parent link="t265_pose_frame"/>
+    <child link="t265_link" />
+  </joint>
+
+
+  <!-- JOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINT -->
+  <joint name="base_lidar_joint" type="fixed">
+    <origin xyz="0.22 0 0.35" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+  </joint>
+  <joint name="base_imu_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="imu_link" />
+  </joint>
+  <joint name="base_camera_joint" type="fixed">
+    <origin xyz="0.317 0 0.25" rpy="0 0 0" /> 
+    <parent link="base_link" />
+    <child link="d415_link" />
+  </joint>
+
+
+  <joint name="wheel_l_joint" type="fixed">
+    <origin xyz="0 0.231 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_l" />
+    <axis xyz="1 0 0" />
+  </joint>
+  <joint name="wheel_r_joint" type="fixed">
+    <origin xyz="0 -0.231 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_r" />
+    <axis xyz="1 0 0" />
+  </joint>
+  <!-- JOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINT -->
+
+  <!-- Base --> 
+  <link name="base_link">
+    <visual>
+      <origin
+        xyz="0 0 0.0375"
+        rpy="0 0 1.570796" />
+      <geometry>
+        <mesh
+          filename="package://coconut_uvc_description/meshes/coconut_uvc.stl" />
+      </geometry>
+      <material name="black_metal">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Left Wheel -->
+  <link name="wheel_l">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.570796 0 3.14159" />
+      <geometry>
+        <cylinder length="0.041" radius="0.085"/>
+      </geometry>
+      <material name="black_metal">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Right Wheel -->
+  <link name="wheel_r">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.570796 0 3.14159" />
+      <geometry>
+        <cylinder length="0.041" radius="0.085"/>
+      </geometry>
+      <material name="black_metal">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="lidar_link"/>
+  <link name="imu_link"/>
+
+
+  <!-- DEPTH CAMERA -->
+  <link
+    name="d415_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.025 0.09 0.025"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Tracking camera link -->
+  <link
+    name="t265_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.025 0.09 0.025"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link
+    name="t265_pose_frame">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.025 0.09 0.025"/>
+      </geometry>
+    </visual>
+  </link>
+
+  
+
+  
+
+</robot>

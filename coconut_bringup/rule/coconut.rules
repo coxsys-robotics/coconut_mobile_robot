@@ -1,0 +1,17 @@
+#http://www.reactivated.net/writing_udev_rules.html
+
+#sudo cp coconut.rules /etc/udev/rules.d/
+#sudo udevadm control --reload-rules
+#sudo udevadm trigger
+
+#KERNEL --> USB or ACM (check in terminal by typing "ls /dev/tty*")
+#idVendor --> Check in terminal by typing "lsusb" 
+#idProduct --> Check in terminal by typing "lsusb"
+#MODE --> Add permission
+#SYMLINK --> New name whatever you want
+#Optional
+#serial --> In case of idVendor and idProduct of 2 usb just the same (check in terminal by typing "/bin/udevadm info --name=/dev/(usbname) | grep SERIAL_SHORT")
+
+KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4",ATTRS{idProduct}=="ea60" MODE:="0777", GROUP:="dialout", SYMLINK+="lidar"
+#KERNEL=="ttyACM*", ATTRS{serial}=="066EFF363732594D43172031" MODE:="0666", GROUP:="dialout", SYMLINK+="nucleo"
+KERNEL=="ttyUSB*", ATTRS{idVendor}=="1a86",ATTRS{idProduct}=="7523" MODE:="0777", GROUP:="dialout", SYMLINK+="nucleo"

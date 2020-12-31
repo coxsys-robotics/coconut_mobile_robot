@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- play specified .bag file. -->
+
+    <!-- Parameters -->
+    <param name="use_sim_time" value="true" />
+
+    <!-- Arguments -->
+    <arg name="bag_name" default="latest_bag"/>
+    <arg name="path" default="$(find coconut_bag)/bags/"/>
+    <arg name="file" default="$(arg bag_name).bag" />
+    <arg name="rosbag_rate" default="1" />
+    <arg name="topic_filter" default=""/>
+
+    <!-- Playback rosbag -->
+    <node pkg="rosbag" type="play" name="player" output="screen" args="-r $(arg rosbag_rate) --clock $(arg path)$(arg file) $(arg topic_filter)"/>
+    
+</launch>

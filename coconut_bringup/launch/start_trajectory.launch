@@ -1,0 +1,17 @@
+<launch>
+
+      <arg name="localization_lua" default="2d_slam_01"/>
+      <arg name="configuration_directory" default="$(find coconut_bringup)/config"/>
+      <arg name="configuration_basename" default=" $(arg localization_lua)_localization.lua"/>
+      <arg name="x" default="0.0"/>
+      <arg name="y" default="0.0"/>
+      <arg name="yaw" default="0.0"/>
+
+      <node pkg="cartographer_ros" type="cartographer_start_trajectory" name="cartographer_start_trajectory" 
+            args="-configuration_directory $(arg configuration_directory)
+                  -configuration_basename $(arg configuration_basename)
+                  -initial_pose '{to_trajectory_id=0, relative_pose={translation={$(arg x),$(arg y), 0.0},rotation={0.0, 0.0, $(arg yaw) } }}'"
+            output="screen">
+      </node>
+
+</launch>

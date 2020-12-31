@@ -1,0 +1,31 @@
+global_costmap:
+  footprint_padding: 0.01
+  global_frame: map
+  robot_base_frame: base_footprint
+  update_frequency: 4.0
+  publish_frequency: 1.0
+  static_map: false
+  # width: 400 # if static
+  # height: 400
+  # origin_x: -200
+  # origin_y: -200
+ 
+  transform_tolerance: 0.2
+  plugins: 
+    - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+    #- {name: obstacle_layer,          type: "costmap_2d::VoxelLayer"}
+    - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+  
+  inflation_layer:
+    cost_scaling_factor: 0.5
+    #2.58	
+    inflation_radius: 0.7
+    #1.75
+
+  static_layer:
+    enabled: true
+    trinary_costmap: false
+    # map_topic: "/map"
+    map_topic: "/map_static/map"
+
+  

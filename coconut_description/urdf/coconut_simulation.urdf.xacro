@@ -1,0 +1,273 @@
+<?xml version="1.0" ?>
+<robot name="coconut"  xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find coconut_description)/urdf/coconut.gazebo.xacro" />
+
+  <link name="base_footprint"/>
+  
+  <!-- Base Link --> 
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0002 -0.0001 0" rpy="1.570796 0 0" />
+      <mass value="40." />
+      <inertia 
+        ixx="1.79366667" 
+        ixy="0" 
+        ixz="0" 
+        iyy="2.30966667"
+        iyz="0"
+        izz="1.28666667" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0.0375"
+        rpy="0 0 1.570796" />
+      <geometry>
+        <mesh
+          filename="package://coconut_description/meshes/coconut_uvc.stl" />
+      </geometry>
+      <material name="black_metal">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.0375"
+        rpy="0 0 1.570796" />
+      <geometry>
+        <mesh
+          filename="package://coconut_description/meshes/coconut_uvc.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+  </joint>
+  <!-- /Base Link --> 
+
+
+  <!-- Left Wheel -->
+  <link name="wheel_l">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.570796 0" />
+      <mass
+        value="2.9" />
+      <inertia
+        ixx="0.00564437"
+        ixy="5.421E-20"
+        ixz="-3.1691E-20"
+        iyy="0.00564437"
+        iyz="1.4836E-20"
+        izz="0.01047625" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.570796 0 3.14159" />
+      <geometry>
+        <cylinder length="0.041" radius="0.085"/>
+      </geometry>
+      <material name="black_metal">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.570796 0 0" />
+      <geometry>
+        <cylinder length="0.041" radius="0.085"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_l_joint" type="continuous">
+    <origin xyz="0 0.231 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_l" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <!-- /Left Wheel -->
+  
+
+  <!-- Right Wheel -->
+  <link name="wheel_r">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.570796 0" />
+      <mass
+        value="2.9" />
+      <inertia
+        ixx="0.00564437"
+        ixy="5.421E-20"
+        ixz="-3.1691E-20"
+        iyy="0.00564437"
+        iyz="1.4836E-20"
+        izz="0.01047625" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.570796 0 3.14159" />
+      <geometry>
+        <cylinder length="0.041" radius="0.085"/>
+      </geometry>
+      <material name="black_metal">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.570796 0 0" />
+      <geometry>
+        <cylinder length="0.041" radius="0.085"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_r_joint" type="continuous">
+    <origin xyz="0 -0.231 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_r" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <!-- /Right Wheel -->
+
+
+  <!-- Front Caster Wheel -->
+  <link
+    name="front_caster_wheel">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.5" />
+      <inertia
+        ixx="0.00036125"
+        ixy="2.7105E-18"
+        ixz="6.1583E-17"
+        iyy="0.00036125"
+        iyz="-3.4478E-17"
+        izz="0.00036125" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0425"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0425"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_caster_wheel_joint"
+    type="fixed">
+    <origin
+      xyz="0.25 0 -0.0425"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_caster_wheel" />
+  </joint>
+
+  <!-- Back Caster Wheel -->
+  <link
+    name="back_caster_wheel">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.5" />
+      <inertia
+        ixx="0.00036125"
+        ixy="2.7105E-18"
+        ixz="6.1583E-17"
+        iyy="0.00036125"
+        iyz="-3.4478E-17"
+        izz="0.00036125" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0425"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0425"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_caster_wheel_joint"
+    type="fixed">
+    <origin
+      xyz="-0.25 0 -0.0425"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_caster_wheel" />
+  </joint>
+
+
+  <!-- LIDAR -->
+  <link name="lidar_link"/>
+  <joint name="base_lidar_joint" type="fixed">
+    <origin xyz="0.22 0 0.35" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+  </joint>
+  <!-- /LIDAR -->
+
+
+  <!-- IMU -->
+  <link name="imu_link"/>
+  <joint name="base_imu_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="imu_link" />
+  </joint>
+  <!-- /IMU -->
+
+
+  <!-- DEPTH CAMERA -->
+  <link
+    name="d415_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.025 0.09 0.025"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_camera_joint" type="fixed">
+    <origin xyz="0.317 0 0.25" rpy="0 0 0" /> 
+    <parent link="base_link" />
+    <child link="d415_link" />
+  </joint>
+  <!-- /DEPTH CAMERA -->
+
+</robot>

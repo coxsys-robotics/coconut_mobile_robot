@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<!--
+    run this to use robot navigation. 
+	use amcl for localization and teb local planner for navigation.
+	will run bringup.launch, map_server, amcl, teb local planner, and python code to set amcl pose.
+-->
+
+<launch>
+	<!-- name of bag file to record -->
+	<arg name="bag_name" default="no_use"/>
+	<arg name="lua_name" default="test"/>
+	<arg name="map_name" default="test"/>
+	
+	<arg name="initial_pose_x" default="0.0"/>
+	<arg name="initial_pose_y" default="0.0"/>
+	<arg name="initial_pose_a" default="0.0"/>
+
+	<arg name="configuration_directory" default="$(find coconut_bringup)/config"/>
+	<arg name="configuration_basename" default="$(arg lua_name)_localization.lua"/>
+	<!-- name of localizaton map and navigation map -->
+	<arg name="loc_map_name" default="$(arg map_name)"/>
+	<arg name="nav_map_name" default="$(arg map_name)_nav"/>
+
+	<include file="$(find coconut_bringup)/launch/coconut_bringup.launch" />
+
+	<!-- LOAD MAP --> 
+	<!-- map server for localization -->
+	<node pkg="map_server" type="map_server" name="map_server" args="$(find coconut_bringup)/map/$(arg loc_map_name).yaml">
+		<param name="frame_id" value="map"/> 
+	</node> 
+
+	<!-- AMCL NODE -->
+	<!-- localization node -->
+	<node pkg="amcl" type="amcl" name="amcl" output="screen">
+		<rosparam file="$(find coconut_localization)/parameter/test_amcl_params.yaml" command="load"/>
+		<param name="initial_pose_x" value="$(arg initial_pose_x)"/>
+		<param name="initial_pose_y" value="$(arg initial_pose_y)"/>
+		<param name="initial_pose_a" value="$(arg initial_pose_a)"/>
+		<remap from="scan" to="/scan_filtered"/>
+	</node>
+
+	<node pkg="map_server" type="map_server" name="map_static_publisher" args="$(find coconut_bringup)/map/$(arg nav_map_name).yaml" ns="map_static"/>
+		
+	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+  	  	<rosparam file="$(find coconut_navigation)/teb_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+  	 	<rosparam file="$(find coconut_navigation)/teb_config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+  		<rosparam file="$(find coconut_navigation)/teb_config/local_costmap_params.yaml" command="load" />
+  		<rosparam file="$(find coconut_navigation)/teb_config/global_costmap_params.yaml" command="load" />
+		<rosparam file="$(find coconut_navigation)/teb_config/teb_local_planner_params.yaml" command="load" />
+		<rosparam file="$(find coconut_navigation)/teb_config/move_base_params.yaml" command="load" />
+		
+		<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+		<param name="GlobalPlanner/orientation_mode" value="2" />
+		<param name="GlobalPlanner/orientation_window_size" value="10" />
+		<param name="global_costmap/resolution" value="0.05" />
+		<param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+		<remap from="cmd_vel" to="nav_vel"/>
+
+		<!-- <rosparam file="$(find coconut_navigation)/teb_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find coconut_navigation)/teb_config/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+		<rosparam file="$(find coconut_navigation)/teb_config/global_costmap_params.yaml" command="load"/>
+		<rosparam file="$(find coconut_navigation)/teb_config/move_base_params.yaml" command="load"/>
+		<rosparam file="$(find coconut_navigation)/teb_config/base_local_planner_params.yaml" command="load"/>
+		<rosparam file="$(find coconut_navigation)/teb_config/local_costmap_params.yaml" command="load"/>
+		
+		<remap from="cmd_vel" to="nav_vel"/>
+		<remap from="odom" to="wheel_odometry"/> -->
+	</node>
+
+	<!-- <node pkg="coconut_localization" type="amclPose_reset.py" name="amclPose_reset_node">
+	</node> -->
+		
+	<node pkg="coconut_localization" type="initial_pose.py" name="initial_pose_node">
+	</node>
+
+</launch>

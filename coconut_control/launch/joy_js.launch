@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!-- 
+    make joystick able to control robot 
+    joy_node : get joystick input and publish /joy topic
+    teleop_jop : subscribe /joy and calculate velocity command
+    skipGoal_byJoy : subscribe /joy, use to cancel move_base_goal. will see an effect only when use robot navigation.
+-->
+
+<launch>
+
+  <!-- run joy node. topic name : /joy -->
+  <arg name="joy_port" default="js1" doc="check $ls /dev/input"/>
+  <node name="joy_node" pkg="joy" type="joy_node" output="screen">
+    <param name="dev" value="/dev/input/$(arg joy_port)"/>
+    <param name="deadzone" value="0.15" />
+    <param name="autorepeat_rate" value="10" />
+    <param name="coalesce_interval" value="0.001" />
+  </node>
+
+  <node name="skipGoal_byJoy_node" pkg="coconut_navigation" type="skipGoal_byJoy.py" output="screen">
+  </node>
+
+  <!-- python to publish velocity from joy. if using different joy then change config.yaml -->
+  <node pkg="coconut_control" type="teleop_joy.py" name="teleop_joy">
+    <rosparam file="$(find coconut_control)/config/xbox360.yaml" command="load" ns="keymap" />
+    <remap from="cmd_vel" to="joy_vel"/> 
+  </node>
+
+</launch>

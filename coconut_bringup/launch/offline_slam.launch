@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<!--
+    perform cartographer offline slam on filtered bag file.
+    *** Don't forget to filter bag file with coconut_bag/coocnut_bag_filter.py first ***
+-->
+
+<launch>
+  <arg name="bag_name" default="test"/>
+  <arg name="lua_name" default="test"/>
+  <arg name="bag_filenames" default="$(find coconut_bag)/bags/$(arg bag_name)_filtered.bag"/>
+  <arg name="configuration_directory" default="$(find coconut_bringup)/config"/>
+  <arg name="configuration_basename" default="$(arg lua_name)_slam.lua"/>
+
+  <arg name="no_rviz" default="false"/>
+  <param name="/use_sim_time" value="false" />
+
+  <!-- <include file="$(find coconut_bringup)/launch/description.launch" /> -->
+
+  <group unless="$(arg no_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find coconut_bringup)/rviz/coconut.rviz"/>
+
+  </group>
+
+  <node name="cartographer_offline_node" pkg="cartographer_ros"
+      required="$(arg no_rviz)"
+      type="cartographer_offline_node" args="
+          -configuration_directory $(arg configuration_directory)
+          -configuration_basenames $(arg configuration_basename)
+          -urdf_filenames $(find coconut_description)/urdf/coconut_phase_one.urdf.xacro 
+          -bag_filenames $(arg bag_filenames)
+          -keep_running true"
+      output="screen">
+      <remap from="odom" to="t265/odom/sample"/>
+      <remap from="points2" to="d415/depth/color/points"/>
+      <!-- <remap from="scan" to="scan_filtered"/> -->
+  </node>
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+
+  <arg name ="map_bag_name" default="save_map.bag"/>
+  <arg name ="dest_path" default="$(find coconut_bag)/bags"/>
+  <arg name ="topic_name" default="/map"/>
+
+  <node name ="recorder" pkg="rosbag" type="record" output="screen" args="-O $(arg dest_path)/$(arg map_bag_name) $(arg topic_name)">
+  </node>
+  
+</launch>

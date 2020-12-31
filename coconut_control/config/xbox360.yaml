@@ -1,0 +1,10 @@
+
+lin_vel_x: 1 
+lin_vel_y: 0
+ang_vel_z: 3
+lin_speed_up: 3
+lin_speed_down: 0
+ang_speed_up: 2
+ang_speed_down: 1
+reset: 4
+break: 5
