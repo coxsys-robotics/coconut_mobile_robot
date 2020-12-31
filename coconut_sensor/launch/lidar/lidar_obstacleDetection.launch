@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="waiting_time" default="5.0"/>
+
+    <!-- Rplidar -->
+    <include file="$(find coconut_sensor)/launch/includes/ydlidar_g4.launch" />
+    
+    <!-- SETUP COMMAND VELOCITY SUBSCRIBER NODE -->
+    <!-- <node name="cmdvel_subscriber_node"   pkg="val2_bringup"    type="cmdvel_subscriber.py"/> -->
+
+    <!-- OBSTACLE DETECTION NODE -->
+    <node name="lidar_obstacleDetection_node"  pkg="coconut_sensor" type="lidar_obstacleDetection.py"   output="screen">
+        <param name="waiting_time" value="$(arg waiting_time)"/>
+    </node>
+
+</launch>

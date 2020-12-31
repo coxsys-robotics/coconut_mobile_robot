@@ -1,0 +1,23 @@
+scan_filter_chain:
+- name: top_left_pole
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 1.9950858699202458357 # 114.31 degrees
+    upper_angle: 2.4438100200797854278 # 140.02 degrees
+- name: bottom_left_pole
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 2.6628488449604792443 # 152.57 degrees
+    upper_angle: 2.9246482250393874835 # 167.57 degrees
+- name: bottom_right_pole
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: -2.9246482250393874835
+    upper_angle: -2.6628488449604792443
+- name: top_right_pole
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: -2.4438100200797854278
+    upper_angle: -1.9950858699202458357
+
+# offset 2 degrees each

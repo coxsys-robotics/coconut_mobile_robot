@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- LIDAR CONFIGURATION -->
+    <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+    <param name="serial_port"         type="string" value="/dev/ttyLIDAR"/>  
+    <param name="serial_baudrate"     type="int"    value="256000"/>
+    <param name="frame_id"            type="string" value="laser_frame"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
+    <param name="scan_mode"           type="string" value="Sensitivity"/>
+    </node>
+    
+    <!-- Define scope of lidar scanning angle -->
+    <!-- <include file="$(find val2_sensor)/launch/lidar/lidar_filter.launch" /> -->
+
+    <!-- Define lidar and base footprint coordinate frames -->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser"
+    args="0.2245 0.0 0.2 0.0 0.0  0.0 /base_footprint /laser_frame 40" /> -->
+
+</launch>

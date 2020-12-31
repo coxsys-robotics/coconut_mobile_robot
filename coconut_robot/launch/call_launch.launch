@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>   
+
+    <!-- <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen" >
+        <param name="port" value="/dev/nucleo"/>
+        <param name="baud" value="115200"/>
+    </node> -->
+
+    <!-- <node pkg="coconut_bringup" type="recall_rosserial_python.py" name="recall_rosserial_python_node"/> -->
+
+    <node name="call_online_slam_launch_node"   pkg="coconut_robot"    type="call_online_slam_launch.py"   output="screen">
+    </node>
+    
+    <node name="call_save_map_launch_node"   pkg="coconut_robot"    type="call_save_map_launch.py"   output="screen">
+    </node>
+
+    <node name="call_filter_bag_node"   pkg="coconut_robot"    type="call_filter_bag.py"   output="screen">
+    </node>
+    
+    <node name="call_offline_slam_launch_node"   pkg="coconut_robot"    type="call_offline_slam_launch.py"   output="screen">
+    </node>
+    
+    <node name="call_loop_save_map_launch_node"   pkg="coconut_robot"    type="call_loop_save_map_launch.py"   output="screen">
+    </node>
+
+    <node name="call_robot_launch_node"   pkg="coconut_robot"    type="call_robot_launch.py"   output="screen">
+    </node>
+
+    <node name="call_bringup_node"   pkg="coconut_robot"    type="call_bringup.py"   output="screen">
+    </node>
+  
+    <node pkg="coconut_bringup" type="recall_protoX.py" name="protoX_watch_node"/>
+    <!-- <node pkg="protoXmaster" type="protoX" name="protoX_master_node"/> -->
+
+</launch>

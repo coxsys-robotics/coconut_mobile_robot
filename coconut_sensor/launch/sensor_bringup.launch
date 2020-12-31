@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="coconut_sensor" type="bumper_subscriber.py" name="bumper_subscriber_node" output="screen">
+    </node>
+
+    <node pkg="coconut_sensor" type="ultrasonic_subscriber.py" name="ultrasonic_subscriber_node" output="screen">
+    </node>
+    
+</launch>

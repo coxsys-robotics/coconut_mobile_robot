@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--SETUP BRINGUP NODE -->
+    <include file="$(find coconut_uvc_bringup)/launch/coconut_uvc_bringup.launch" />
+    
+    <!-- ROTATE BY ODOM -->
+    <node pkg="coconut_uvc_sensor" type="rotateBy_odom.py" name="rotateBy_odom_node" output="screen"/>
+
+</launch>

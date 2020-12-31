@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!--SETUP COCONUT UVC GUI NODE-->
+    <node name="coconut_uvc_gui_node"   pkg="coconut_uvc_gui"    type="coconut_uvc_gui.py"   output="screen">
+    </node>
+
+    <!--SETUP COCONUT UVC DISPLAY NODE-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find coconut_uvc_bringup)/rviz/coconut_uvc.rviz" />
+
+</launch>

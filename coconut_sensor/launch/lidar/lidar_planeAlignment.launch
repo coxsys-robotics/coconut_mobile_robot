@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Rplidar -->
+    <include file="$(find val2_sensor)/launch/includes/rplidar_a3.launch" />
+    
+    <!-- SETUP COMMAND VELOCITY SUBSCRIBER NODE -->
+    <node name="cmdvel_subscriber_node"   pkg="val2_bringup"    type="cmdvel_subscriber.py"/>
+
+    <!-- Plane Alignment -->
+    <node pkg="val2_sensor" type="lidar_planeAlignment.py" name="lidar_planeAlignment_node" output="screen"/>
+
+</launch>
