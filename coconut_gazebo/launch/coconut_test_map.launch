@@ -1,0 +1,28 @@
+<launch>
+  <arg name="x_pos" default="-8.0"/>
+  <arg name="y_pos" default="-8.0"/>
+  <arg name="z_pos" default="0.1945"/>
+  <arg name="yaw" default="0.0"/>
+
+  <!-- <include file="$(find coconut_gazebo)/launch/test_map.launch">
+  </include> -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">	    
+		<arg name="world_name" value="$(find coconut_gazebo)/worlds/test_map.world"/>	    
+		<arg name="gui" value="true"/>	  
+	</include>	
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find coconut_description)/urdf/coconut_simulation.urdf.xacro" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model coconut -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw) -param robot_description" />
+<!-- 
+    <node name="flat_world_imu_node" pkg="cartographer_turtlebot"
+          type="cartographer_flat_world_imu_node" output="screen">
+    <remap from="imu_in" to="/imu_gz" />
+    <remap from="imu_out" to="/imu" />
+    </node> -->
+</launch>
+<!--  -->

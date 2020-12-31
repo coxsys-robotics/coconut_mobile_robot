@@ -1,0 +1,14 @@
+material outer_wall/Diffuse
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture gray_tile.jpeg
+      }
+    }
+  }
+}

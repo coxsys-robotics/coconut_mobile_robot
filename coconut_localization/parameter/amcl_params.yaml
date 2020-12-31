@@ -1,0 +1,62 @@
+############### AMCL model parameter ###############
+min_particles: 500 #500
+max_particles: 5000 #3000
+
+kld_err: 0.01 #0.01
+kld_z: 0.99 #0.99
+
+update_min_d: 0.05
+update_min_a: 0.01
+
+resample_interval: 1 #1
+transform_tolerance: 0.5 #0.5
+
+recovery_alpha_slow: 0.001 #0.0
+recovery_alpha_fast: 0.1 #0.0
+
+initial_pose_x: 0.0
+initial_pose_y: 0.0
+initial_pose_a: 0.0
+initial_cov_xx: 0.25
+initial_cov_yy: 0.25    
+initial_cov_aa: 0.06853 
+
+gui_publish_rate: 10.0 #5.0
+save_pose_rate: 0.5
+
+use_map_topic: true
+first_map_only: false
+
+############### Laser model parameter ###############
+
+# Specification
+laser_min_range: 0.05
+laser_max_range: 30.0
+laser_max_beams: 30
+
+# Parameters for measurement and motion models
+laser_z_hit: 0.85 #0.9
+laser_z_short: 0.1
+laser_z_max: 0.05
+laser_z_rand: 0.5
+
+laser_sigma_hit: 0.1 #0.1
+laser_lambda_short: 0.1
+
+laser_likelihood_max_dist: 4.0
+laser_model_type: "likelihood_field"
+
+############### Odometry model parameter ###############
+# Parameters for measurement and odometry models
+odom_model_type: "diff-corrected"
+
+odom_alpha1: 0.25 #0.10 expected noise in odometry's rotation estimate from the rotational component
+odom_alpha2: 0.15 #0.15 expected noise in odometry's rotation estimate from the translational component
+odom_alpha3: 0.05 #0.05 expected noise in odometry's translation estimate from the rotational component
+odom_alpha4: 0.10 #0.25 expected noise in odometry's translation estimate from the translational component
+
+odom_frame_id: "t265_odom_frame"
+base_frame_id: "base_footprint"
+global_frame_id: "map"
+
+tf_broadcast: true

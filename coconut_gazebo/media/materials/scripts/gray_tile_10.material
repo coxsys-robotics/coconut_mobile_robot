@@ -1,0 +1,15 @@
+material gray_tile_10/Diffuse
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture gray_tile.jpg
+	scale 0.1 1
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<!-- Save map from map_server, run finish_trajectory service, stop SLAM  -->
+
+<launch>
+    <arg name="filename" default="map"/>
+    <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find coconut_bringup)/map/$(arg filename)"/>
+    <node pkg="rosservice" type="rosservice" name="service_finish_trajectory" args="call --wait /finish_trajectory 0"/>
+    <node pkg="rosservice" type="rosservice" name="service_write_state" args="call --wait /write_state $(find coconut_bringup)/map/$(arg filename).pbstream"/>
+</launch>

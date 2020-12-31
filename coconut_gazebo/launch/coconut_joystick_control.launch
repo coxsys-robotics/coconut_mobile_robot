@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<!--
+    run main component to use robot. 
+    important things are Lidar, joy controller, safety sensors, urdf, t265 camera, and twist_mux
+-->
+
+<launch>
+    <!-- robot's velocity and acceleration limit -->
+    <param name="/config/limit_lin_vel" value="0.5"/>
+    <param name="/config/limit_ang_vel" value="1.6"/>
+    <param name="/config/limit_lin_acc" value="0.5"/>
+    <param name="/config/limit_ang_acc" value="1.6"/>
+    <param name="/config/forward_factor" value="1.0"/>
+    <param name="/config/backward_factor" value="1.0"/>
+    <param name="/config/spin_factor" value="1.0"/>
+    <param name="/config/ultrasonic_limit" value="0.0"/>
+    <param name="/config/omni" value="false"/>
+
+    <node pkg="coconut_control" type="velocity_filter.py" name="velocity_filter">
+        <param name="freq" value="40"/>
+    </node>
+
+    <include file="$(find coconut_control)/launch/joy_js.launch" >
+    </include>
+
+    <!-- TWIST MUX NODE -->
+    <!-- order the priority of each velocity command --> 
+    <include file="$(find twist_mux)/launch/twist_mux.launch" />
+
+</launch>
