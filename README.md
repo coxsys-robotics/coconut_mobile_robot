@@ -1,4 +1,4 @@
-# coconut_agv
+# coconut_mobile_robot
 High level software of Coconut mobile robot.
 
 for parasoliid file, PCB schemetic, and low-level software, please visit
