@@ -34,7 +34,7 @@
         args="-resolution 0.05" />
 
     <!-- This node must use start_trajectory.launch -->
-    <node name="cartographer_initializer" pkg="wyvern_cartographer" type="cartographer_initializer.py">
+    <node name="cartographer_initializer" pkg="coconut_localization" type="cartographer_initializer.py">
 		<param name="package_name" value="coconut_bringup"/>
         <param name="~published_frame" value="t265_odom_frame"/>
         <param name="~tracking_frame" value="base_footprint"/>
