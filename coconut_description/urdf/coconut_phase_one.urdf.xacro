@@ -62,7 +62,7 @@
         rpy="0 0 1.570796" />
       <geometry>
         <mesh
-          filename="package://coconut_uvc_description/meshes/coconut_uvc.stl" />
+          filename="package://coconut_description/meshes/coconut.stl" />
       </geometry>
       <material name="black_metal">
         <color rgba="0.1 0.1 0.1 1"/>

@@ -171,11 +171,11 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>camera_dept</cameraName>
-        <imageTopicName>/coconut_uvc/camera/depth/image_raw</imageTopicName>
-        <cameraInfoTopicName>/coconut_uvc/camera/depth/camera_info</cameraInfoTopicName>
-        <depthImageTopicName>/coconut_uvc/camera/depth/image_raw</depthImageTopicName>
-        <depthImageInfoTopicName>/coconut_uvc/camera/depth/camera_info</depthImageInfoTopicName>
-        <pointCloudTopicName>/coconut_uvc/camera/depth/points</pointCloudTopicName>
+        <imageTopicName>/coconut/camera/depth/image_raw</imageTopicName>
+        <cameraInfoTopicName>/coconut/camera/depth/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>/coconut/camera/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>/coconut/camera/depth/camera_info</depthImageInfoTopicName>
+        <pointCloudTopicName>/coconut/camera/depth/points</pointCloudTopicName>
         <frameName>camera_dept_link</frameName>
         <pointCloudCutoff>0.3</pointCloudCutoff>
         <pointCloudCutoffMax>8.0</pointCloudCutoffMax>
