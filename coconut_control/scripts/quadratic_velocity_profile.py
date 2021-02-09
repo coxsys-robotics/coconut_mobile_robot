@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from std_msgs.msg import Float32
+from std_msgs.msg import Float32, UInt8
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Twist
 
@@ -53,6 +53,7 @@ c_value = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 Hz_command = 50
 
 joy_emer_stop = False
+bumper_status = 0 # 0:free, 1:forward bumper, 2:backward bumper
 
 """
 scale value from 1 unit to vel
@@ -94,39 +95,43 @@ def emer_stop(data):
     else:
         joy_emer_stop = False
 
+def bumper_callback(data):
+    global bumper_status
+    bumper_status = data.data
+
 def callback(data = Twist()):
     global max_linear_vel, max_angular_vel
     global cmd_vel, pre_value, vel_now, acc_now, tau_use, T
-    global joy_emer_stop
-    # axes = list(data.axes)
-    # if data.buttons[0]:
-    #     max_linear_vel = max_linear_vel - 0.1
-    #     if max_linear_vel < 0.1:
-    #         max_linear_vel = 0.1
-    # if data.buttons[3]:
-    #     max_linear_vel = max_linear_vel + 0.1
-    #     if max_linear_vel > 0.5:
-    #         max_linear_vel = 0.5
-    # if data.buttons[2]:
-    #     max_angular_vel = max_angular_vel - 0.1
-    # if data.buttons[1]:
-    #     max_angular_vel = max_angular_vel + 0.1
-    # if data.buttons[4]:
-    #     for axis in range(3):
-    #         pre_value[axis] = 0
-    #         cmd_vel[axis] = 0
-    #         tau_use[axis] = 999
-    #     return
+    global joy_emer_stop, bumper_status
     
     """
     cal target vel from axes data
     """
+    forward_factor = rospy.get_param("/config/forward_factor", 1.0)
+    backward_factor = rospy.get_param("/config/backward_factor", 1.0)
+    rotate_factor = rospy.get_param("/config/spin_factor", 1.0)
     # cmd_vel[linear_x] = cal_vel(axes[1], threshold[linear_x]) * max_linear_vel
     # cmd_vel[linear_y] = cal_vel(axes[0], threshold[linear_y]) * max_linear_vel
     # cmd_vel[angular_z] = cal_vel(axes[3], threshold[angular_z]) * max_angular_vel
     if(joy_emer_stop):
         return
-    cmd_vel = [data.linear.x, data.linear.y, data.angular.z]
+
+    if(data.linear.x > 0):
+        if(bumper_status==1):
+            for axis in range(3):
+                pre_value[axis] = 0
+                cmd_vel[axis] = 0
+                tau_use[axis] = 999
+            return
+        cmd_vel = [data.linear.x * forward_factor, data.linear.y, data.angular.z * rotate_factor]
+    else:
+        if(bumper_status==2):
+            for axis in range(3):
+                pre_value[axis] = 0
+                cmd_vel[axis] = 0
+                tau_use[axis] = 999
+            return
+        cmd_vel = [data.linear.x * backward_factor, data.linear.y, data.angular.z * rotate_factor]
 
     for axis in range(3):
         if cmd_vel[axis] != pre_value[axis]:
@@ -149,10 +154,11 @@ def callback(data = Twist()):
             tau_use[axis] = 0
 
 if __name__ == '__main__':
-    rospy.init_node('joy_control', anonymous=True)
+    rospy.init_node('velocity_filter', anonymous=True)
     pub = rospy.Publisher('/coconut_vel', Twist, queue_size=10)
     pub_acc = rospy.Publisher('/acc', Float32, queue_size=10)
     rospy.Subscriber('/joy', Joy, emer_stop)
+    rospy.Subscriber('/bumper_detected', UInt8, bumper_callback)
     rospy.Subscriber('/twist_mux/cmd_vel', Twist, callback)
 
     r = rospy.Rate(Hz_command)
