@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 from roslaunch.parent import ROSLaunchParent
 from battery_logger import battery_logger
 from time import sleep

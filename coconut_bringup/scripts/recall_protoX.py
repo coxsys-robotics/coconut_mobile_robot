@@ -1,9 +1,8 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python3 
 
 import sys
 import time
 import glob
-import serial
 import rospy
 import rosnode
 import roslaunch

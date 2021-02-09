@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright (c) 2018, CoXSys Robotics, Inc.
 # * joy2vel : 2 July 2018
 # * author : Sirawat Soksawatmakin
@@ -123,20 +123,20 @@ class joy2vel():
         self.pub.publish(self.twist)
 
     def check_press_button(self):
-		joy_buttons = list(self.joy_buttons)
-		joy_axes = list(self.joy_axes)
-		other_button = joy_buttons + joy_axes
-		print(other_button)
+        joy_buttons = list(self.joy_buttons)
+        joy_axes = list(self.joy_axes)
+        other_button = joy_buttons + joy_axes
+        print(other_button)
 
-		result = False
-		if len(other_button) > 0 :
-			result = all(elem == other_button[0] for elem in other_button)
-		if result :
-			print("All Elements in List are Equal")
-			self.press_other_button = False
-		else:        
-			print("All Elements in List are Not Equal")
-			self.press_other_button = True
+        result = False
+        if len(other_button) > 0 :
+            result = all(elem == other_button[0] for elem in other_button)
+        if result :
+            print("All Elements in List are Equal")
+            self.press_other_button = False
+        else:        
+            print("All Elements in List are Not Equal")
+            self.press_other_button = True
 
 
 if __name__ == "__main__":
@@ -144,11 +144,11 @@ if __name__ == "__main__":
     rospy.init_node('teleop_joy_to_velocity')
     joycmd = joy2vel()
     try:
-        print msg
+        # print( msg)
         rospy.spin()
 
     except BaseException:
-        print e
+        print( e)
 
     finally:
         joycmd.reset()

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright (c) 2018, CoXSys Robotics, Inc.
 # * joy2vel : 22 Nov 2018
 # * author : Sirawat Soksawatmakin, Teerapong Apiraungpituk

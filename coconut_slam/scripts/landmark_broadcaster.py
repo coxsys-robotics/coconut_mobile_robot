@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from cartographer_ros_msgs.msg import LandmarkEntry, LandmarkList
 

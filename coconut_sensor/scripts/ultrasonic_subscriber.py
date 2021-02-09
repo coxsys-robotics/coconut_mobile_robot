@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 from std_msgs.msg import UInt16MultiArray, UInt8
@@ -14,6 +14,7 @@ class ultrasonicData_subscriber(object):
 		self.ultrasonic_data = None
 		# self.ultrasonic_detected = None
 
+		## tune these based on robot's sensors placement, sensors' spec, and robot velocity profile 
 		self.max_range = 60 # centimetre
 		self.min_range = 40 # centimetre
 		self.min_ult = 20
