@@ -40,7 +40,7 @@
 
   <arg name ="map_bag_name" default="save_map.bag"/>
   <arg name ="dest_path" default="$(find coconut_bag)/bags"/>
-  <arg name ="topic_name" default="/map"/>
+  <arg name ="topic_name" default=" --lz4 /t265/odom/sample /cmd_vel /tf /scan"/>
 
   <node name ="recorder" pkg="rosbag" type="record" output="screen" args="-O $(arg dest_path)/$(arg map_bag_name) $(arg topic_name)">
   </node>

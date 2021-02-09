@@ -8,7 +8,6 @@
 
 <launch>
 	<!-- name of bag file to record -->
-	<arg name="bag_name" default="no_use"/>
 	<arg name="lua_name" default="test"/>
 	<arg name="map_name" default="test"/>
 	
