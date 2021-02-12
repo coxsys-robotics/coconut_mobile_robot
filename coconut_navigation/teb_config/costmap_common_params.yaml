@@ -19,6 +19,15 @@ obstacle_layer:
   inflation_radius: 0.32 #0.3
   cost_scaling_factor: 1.0
 
+range_sensor_layer:
+  enabled: true
+  topics: ["/ultrasonic_0","/ultrasonic_1","/ultrasonic_2","/ultrasonic_3","/ultrasonic_4",
+            "/ultrasonic_5","/ultrasonic_6","/ultrasonic_7","/ultrasonic_8","/ultrasonic_9"]
+  no_reading_timeout: 1.0
+  clear_threshold: 0.2
+  mark_threshold: 0.8
+  clear_on_max_reading: true
+
 inflation_layer:
   enabled:              true
   cost_scaling_factor:  10.0  

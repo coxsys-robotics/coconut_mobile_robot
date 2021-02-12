@@ -14,6 +14,7 @@ local_costmap:
     # - {name: static_layer,          type: "costmap_2d::StaticLayer"}
     - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}
     - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+    - {name: range_sensor_layer,      type: "range_sensor_layer::RangeSensorLayer"}
 
   inflation_layer:
     inflation_radius: 0.7
