@@ -22,7 +22,7 @@
   </joint>
 
 
-  <!-- JOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINT -->
+  <!-- ##########################  JOINT  ########################## -->
   <joint name="base_lidar_joint" type="fixed">
     <origin xyz="0.22 0 0.35" rpy="0 0 0" />
     <parent link="base_link" />
@@ -52,8 +52,64 @@
     <child link="wheel_r" />
     <axis xyz="1 0 0" />
   </joint>
-  <!-- JOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINTJOINT -->
 
+  <!-- ultrasonic joint -->
+  <joint name="ultrasonic_0_joint" type="fixed">
+    <origin xyz="0.32 0.22 0" rpy="0 0 0.087" />
+    <parent link="base_link" />
+    <child link="ultrasonic_0" />
+  </joint>
+  <joint name="ultrasonic_1_joint" type="fixed">
+    <origin xyz="0.32 0.15 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="ultrasonic_1" />
+  </joint>
+  <joint name="ultrasonic_2_joint" type="fixed">
+    <origin xyz="0.32 -0.15 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="ultrasonic_2" />
+  </joint>
+  <joint name="ultrasonic_3_joint" type="fixed">
+    <origin xyz="0.32 -0.22 0" rpy="0 0 -0.087" />
+    <parent link="base_link" />
+    <child link="ultrasonic_3" />
+  </joint>
+
+  <joint name="ultrasonic_4_joint" type="fixed">
+    <origin xyz="-0.29 -0.23 0" rpy="0 0 3.57" />
+    <parent link="base_link" />
+    <child link="ultrasonic_4" />
+  </joint>
+  <joint name="ultrasonic_5_joint" type="fixed">
+    <origin xyz="-0.31 -0.17 0" rpy="0 0 3.23" />
+    <parent link="base_link" />
+    <child link="ultrasonic_5" />
+  </joint>
+  <joint name="ultrasonic_6_joint" type="fixed">
+    <origin xyz="-0.32 -0.08 0" rpy="0 0 3.14159265" />
+    <parent link="base_link" />
+    <child link="ultrasonic_6" />
+  </joint>
+  <joint name="ultrasonic_7_joint" type="fixed">
+    <origin xyz="-0.32 0.08 0" rpy="0 0 3.14159265" />
+    <parent link="base_link" />
+    <child link="ultrasonic_7" />
+  </joint>
+  <joint name="ultrasonic_8_joint" type="fixed">
+    <origin xyz="-0.31 0.17 0" rpy="0 0 3.05" />
+    <parent link="base_link" />
+    <child link="ultrasonic_8" />
+  </joint>
+  <joint name="ultrasonic_9_joint" type="fixed">
+    <origin xyz="-0.29 0.23 0" rpy="0 0 2.70" />
+    <parent link="base_link" />
+    <child link="ultrasonic_9" />
+  </joint>
+
+  <!-- ##########################  JOINT ########################## -->
+
+
+  <!-- ##########################  LINK  ########################## -->
   <!-- Base --> 
   <link name="base_link">
     <visual>
@@ -142,6 +198,49 @@
     </visual>
   </link>
 
+  <!-- ultrasonic sensor link (10 in total, index start with 0, see picture in coconut_sensor/scripts/ultrasonic_subscriber.py) -->
+  <link
+    name="ultrasonic_0">
+  </link>
+
+  <link
+    name="ultrasonic_1">
+  </link>
+
+  <link
+    name="ultrasonic_2">
+  </link>
+
+  <link
+    name="ultrasonic_3">
+  </link>
+
+  <link
+    name="ultrasonic_4">
+  </link>
+
+  <link
+    name="ultrasonic_5">
+  </link>
+
+  <link
+    name="ultrasonic_6">
+  </link>
+
+  <link
+    name="ultrasonic_7">
+  </link>
+
+  <link
+    name="ultrasonic_8">
+  </link>
+
+  <link
+    name="ultrasonic_9">
+  </link>
+
+
+  <!-- ##########################  LINK  ########################## -->
   
 
   
