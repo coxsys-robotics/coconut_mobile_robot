@@ -15,8 +15,11 @@
     <!--arg name="load_state_filename" default="$(env HOME)/outdoor.bag.pbstream"/-->
     <!-- <arg name="load_state_filename" default=""/> -->
 
-    <include file="$(find coconut_bringup)/launch/coconut_bringup.launch" />
-    
+    <arg name="call_bringup" default="true"/>
+	<group if="$(arg call_bringup)">
+		<include file="$(find coconut_bringup)/launch/coconut_bringup.launch" />
+	</group>
+	
     <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" 
         args="-configuration_directory $(arg configuration_directory)
                 -configuration_basename $(arg configuration_basename)"
