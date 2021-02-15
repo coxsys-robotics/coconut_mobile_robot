@@ -21,7 +21,10 @@
 	<arg name="loc_map_name" default="$(arg map_name)"/>
 	<arg name="nav_map_name" default="$(arg map_name)_nav"/>
 
-	<include file="$(find coconut_bringup)/launch/coconut_bringup.launch" />
+	<arg name="call_bringup" default="true"/>
+	<group if="$(arg call_bringup)">
+		<include file="$(find coconut_bringup)/launch/coconut_bringup.launch" />
+	</group>
 
 	<!-- LOAD MAP --> 
 	<!-- map server for localization -->
