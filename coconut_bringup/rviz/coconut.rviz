@@ -30,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -68,6 +68,88 @@ Visualization Manager:
             Expand Link Details: false
             Expand Tree: false
             Link Tree Style: Links in Alphabetic Order
+            base_footprint:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            base_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            d415_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            imu_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            lidar_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            t265_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            t265_pose_frame:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            ultrasonic_0:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_1:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_2:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_3:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_4:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_5:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_6:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_7:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_8:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            ultrasonic_9:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            wheel_l:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            wheel_r:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
           Name: RobotModel
           Robot Description: robot_description
           TF Prefix: ""
@@ -91,11 +173,39 @@ Visualization Manager:
               Value: false
             map:
               Value: true
+            t265_accel_frame:
+              Value: true
+            t265_accel_optical_frame:
+              Value: true
+            t265_gyro_frame:
+              Value: true
+            t265_gyro_optical_frame:
+              Value: true
             t265_link:
               Value: false
             t265_odom_frame:
               Value: true
             t265_pose_frame:
+              Value: true
+            ultrasonic_0:
+              Value: true
+            ultrasonic_1:
+              Value: true
+            ultrasonic_2:
+              Value: true
+            ultrasonic_3:
+              Value: true
+            ultrasonic_4:
+              Value: true
+            ultrasonic_5:
+              Value: true
+            ultrasonic_6:
+              Value: true
+            ultrasonic_7:
+              Value: true
+            ultrasonic_8:
+              Value: true
+            ultrasonic_9:
               Value: true
             wheel_l:
               Value: false
@@ -110,7 +220,46 @@ Visualization Manager:
           Tree:
             map:
               t265_odom_frame:
-                {}
+                t265_pose_frame:
+                  t265_link:
+                    base_footprint:
+                      base_link:
+                        d415_link:
+                          {}
+                        imu_link:
+                          {}
+                        lidar_link:
+                          {}
+                        ultrasonic_0:
+                          {}
+                        ultrasonic_1:
+                          {}
+                        ultrasonic_2:
+                          {}
+                        ultrasonic_3:
+                          {}
+                        ultrasonic_4:
+                          {}
+                        ultrasonic_5:
+                          {}
+                        ultrasonic_6:
+                          {}
+                        ultrasonic_7:
+                          {}
+                        ultrasonic_8:
+                          {}
+                        ultrasonic_9:
+                          {}
+                        wheel_l:
+                          {}
+                        wheel_r:
+                          {}
+                    t265_accel_frame:
+                      t265_accel_optical_frame:
+                        {}
+                    t265_gyro_frame:
+                      t265_gyro_optical_frame:
+                        {}
           Update Interval: 0
           Value: true
         - Angle Tolerance: 0.10000000149011612
@@ -333,8 +482,6 @@ Visualization Manager:
       Marker Topic: /constraint_list
       Name: MarkerArray
       Namespaces:
-        Inter constraints, same trajectory: true
-        Inter residuals, same trajectory: true
         Intra constraints: true
         Intra residuals: true
       Queue Size: 100
@@ -345,7 +492,108 @@ Visualization Manager:
       Name: MarkerArray
       Namespaces:
         Trajectory 0: true
+        Trajectory 1: true
       Queue Size: 100
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_0
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_1
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_2
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_3
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_4
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_5
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_6
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_7
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_8
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 10
+      Topic: /ultrasonic_9
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
@@ -374,7 +622,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 4.715016841888428
+      Angle: 6.280033588409424
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -384,10 +632,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 78.95185852050781
+      Scale: 430.979248046875
       Target Frame: <Fixed Frame>
-      X: 3.4157297611236572
-      Y: 0.045151982456445694
+      X: 0.09656189382076263
+      Y: -0.30291903018951416
     Saved: ~
 Window Geometry:
   Displays:
