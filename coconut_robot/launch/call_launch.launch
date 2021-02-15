@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+<!-- launch this file to control robot with app 
+    call all python file that is nessessary to launch other .launch -->
+
 <launch>   
 
     <!-- <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen" >
