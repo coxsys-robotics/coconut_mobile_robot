@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Import necessary package
 import rospy
@@ -66,8 +66,8 @@ class send_cmdvel():
     def rotateRobot(self, state, degree):
         if state == "rotate_left":
             if self.setDegree == True:
-			    self.first_degree = degree
-			    self.setDegree = False
+                self.first_degree = degree
+                self.setDegree = False
             if degree > 0 or degree == 0 or degree == 180:
                 self.filter_degree = degree - self.first_degree
             elif degree < 0:
@@ -94,8 +94,8 @@ class send_cmdvel():
 
         elif state == "rotate_right":
             if self.setDegree == True:
-			    self.first_degree = degree
-			    self.setDegree = False
+                self.first_degree = degree
+                self.setDegree = False
             if degree > 0 or degree == 0 or degree == 180:
                 if self.first_degree < 0:
                     filter_degree = degree - self.first_degree - 360
@@ -105,7 +105,7 @@ class send_cmdvel():
                     self.filter_degree = -filter_degree
             elif degree < 0:
                 self.filter_degree = -degree + self.first_degree
-    
+
             self.diff = self.target + self.filter_degree
             velocity = self.kp * (self.diff)
             if velocity <= -0.35:
@@ -122,8 +122,8 @@ class send_cmdvel():
 
         elif state == "rotate_half_left":
             if self.setDegree == True:
-			    self.first_degree = degree
-			    self.setDegree = False
+                self.first_degree = degree
+                self.setDegree = False
             if degree > 0 or degree == 0 or degree == 180:
                 self.filter_degree = degree - self.first_degree
             elif degree < 0:
@@ -133,7 +133,7 @@ class send_cmdvel():
                 elif self.first_degree < 0:
                     filter_degree = -degree + self.first_degree
                     self.filter_degree = -filter_degree
-    
+
             self.diff = self.target - self.filter_degree
             velocity = self.kp * (self.diff)
             if velocity >= 0.35:
@@ -150,8 +150,8 @@ class send_cmdvel():
         
         elif state == "rotate_half_right":
             if self.setDegree == True:
-			    self.first_degree = degree
-			    self.setDegree = False
+                self.first_degree = degree
+                self.setDegree = False
             if degree > 0 or degree == 0 or degree == 180:
                 if self.first_degree < 0:
                     filter_degree = degree - self.first_degree - 360
@@ -161,7 +161,7 @@ class send_cmdvel():
                     self.filter_degree = -filter_degree
             elif degree < 0:
                 self.filter_degree = -degree + self.first_degree
-    
+
             self.diff = self.target + self.filter_degree
             velocity = self.kp * (self.diff)
             if velocity <= -0.35:
@@ -178,8 +178,8 @@ class send_cmdvel():
 
         elif state == "rotate_around_left":
             if self.setDegree == True:
-			    self.first_degree = degree
-			    self.setDegree = False
+                self.first_degree = degree
+                self.setDegree = False
             if degree > 0 or degree == 0 or degree == 180:
                 if self.first_degree >= 0:
                     if self.round == 1:
@@ -219,8 +219,8 @@ class send_cmdvel():
             
         elif state == "rotate_around_right":
             if self.setDegree == True:
-			    self.first_degree = degree
-			    self.setDegree = False
+                self.first_degree = degree
+                self.setDegree = False
             if degree > 0 or degree == 0 or degree == 180:
                 if self.first_degree < 0:
                     filter_degree = degree - self.first_degree - 360
@@ -311,4 +311,4 @@ if __name__=="__main__":
             sendCmdvel_node.rotateRobot(state, odom_degree)
             r.sleep()
     except Exception as e:
-		print(e)
+        print(e)
