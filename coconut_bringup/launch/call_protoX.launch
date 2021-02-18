@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>   
     <!-- rosrun protoXmaster protoX -->>
-    <node pkg="protoXmaster" type="protoX" name="protoX_node" output="screen" >
+    <node pkg="protoXmaster" type="protoX" name="protoX_node" output="screen" args="/dev/nucleo" >
     </node>
 
 </launch>
