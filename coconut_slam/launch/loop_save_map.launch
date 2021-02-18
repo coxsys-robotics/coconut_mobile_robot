@@ -4,5 +4,5 @@
 
 <launch>
     <arg name="filename" default="map"/>
-    <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find coconut_uvc_bringup)/map/$(arg filename)"/>
+    <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find coconut_bringup)/map/$(arg filename)"/>
 </launch>
