@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>   
-    <!-- rosrun protoXmaster protoX -->>
-    <node pkg="protoXmaster" type="protoX" name="protoX_node" output="screen" >
+    <!-- rosrun protoXmaster protoX -->
+    <!-- When call from .launch must specify port -->
+    <node pkg="protoXmaster" type="protoX" name="protoX_node" output="screen" args="/dev/nucleo">
     </node>
 
 </launch>
