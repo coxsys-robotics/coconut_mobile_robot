@@ -14,7 +14,7 @@ def bringup_start():
 	global parent		
 	uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
 	roslaunch.configure_logging(uuid)
-	cli_args = ['{}/coconut_ws/src/coconut_uvc_bringup/launch/coconut_uvc_bringup.launch'.format(home)]
+	cli_args = ['{}/coconut_ws/src/coconut_bringup/launch/coconut_bringup.launch'.format(home)]
 	roslaunch_args = cli_args[1:]
 	roslaunch_file = [(roslaunch.rlutil.resolve_launch_arguments(cli_args)[0], roslaunch_args)]
 	parent = roslaunch.parent.ROSLaunchParent(uuid, roslaunch_file)

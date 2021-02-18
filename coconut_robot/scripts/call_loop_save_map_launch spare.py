@@ -13,7 +13,7 @@ def loop_save_map_start():
 	filename = rospy.get_param("/map_name", 'test')
 	uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
 	roslaunch.configure_logging(uuid)
-	cli_args = ['{}/coconut_ws/src/coconut_uvc_slam/launch/loop_save_map.launch'.format(home), "filename:={}".format(filename)]
+	cli_args = ['{}/coconut_ws/src/coconut_slam/launch/loop_save_map.launch'.format(home), "filename:={}".format(filename)]
 	roslaunch_args = cli_args[1:]
 	roslaunch_file = [(roslaunch.rlutil.resolve_launch_arguments(cli_args)[0], roslaunch_args)]
 	parent = roslaunch.parent.ROSLaunchParent(uuid, roslaunch_file)

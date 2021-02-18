@@ -10,7 +10,7 @@ home = expanduser("~")
 def filter_bag_start():		
 	filename = rospy.get_param("/map_name", 'test')
 
-	bag_path = "{}/coconut_ws/src/coconut_uvc_bag/bags/".format(home)
+	bag_path = "{}/coconut_ws/src/coconut_bag/bags/".format(home)
 	bag_filename = "{}".format(filename)
 	bag_file = bag_path + bag_filename
 	

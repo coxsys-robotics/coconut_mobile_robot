@@ -9,7 +9,7 @@ def main():
     new_lua_name = rospy.get_param('/map_name', 'test')
     
     ##################### SLAM LUA #####################
-    luaSlam_path = "{}/coconut_ws/src/coconut_uvc_bringup/config/".format(home)
+    luaSlam_path = "{}/coconut_ws/src/coconut_bringup/config/".format(home)
 
     luaSlam_filename = "{}_slam.lua".format(lua_name)
     luaSlam_file = luaSlam_path + luaSlam_filename
@@ -20,7 +20,7 @@ def main():
     copy_file(luaSlam_file, new_luaSlam_file)
 
     ##################### LOCALIZATION LUA #####################
-    luaLocalization_path = "{}/coconut_ws/src/coconut_uvc_bringup/config/".format(home)
+    luaLocalization_path = "{}/coconut_ws/src/coconut_bringup/config/".format(home)
 
     luaLocalization_filename = "{}_localization.lua".format(lua_name)
     luaLocalization_file = luaLocalization_path + luaLocalization_filename

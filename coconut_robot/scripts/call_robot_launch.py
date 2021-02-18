@@ -15,7 +15,7 @@ def robot_start():
 	filename = rospy.get_param("/map_name", 'test')
 	uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
 	roslaunch.configure_logging(uuid)
-	cli_args = ['{}/coconut_ws/src/coconut_uvc_robot/launch/coconut_uvc_robot.launch'.format(home), "map_name:={}".format(filename), "lua_name:={}".format(filename)]
+	cli_args = ['{}/coconut_ws/src/coconut_robot/launch/coconut_robot.launch'.format(home), "map_name:={}".format(filename), "lua_name:={}".format(filename)]
 	roslaunch_args = cli_args[1:]
 	roslaunch_file = [(roslaunch.rlutil.resolve_launch_arguments(cli_args)[0], roslaunch_args)]
 	parent = roslaunch.parent.ROSLaunchParent(uuid, roslaunch_file)
