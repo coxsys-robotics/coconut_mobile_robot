@@ -5,31 +5,21 @@
     <arg name="map_name" default="fortuna_4th_floor"/>
     
     <!-- COCONUT UVC NAVIGATION -->
-    <include file="$(find coconut_bringup)/launch/coconut_navigation_amcl.launch">
+    <include file="$(find coconut_bringup)/launch/coconut_navigation.launch">
         <arg name="lua_name" value="$(arg lua_name)" />
         <arg name="map_name" value="$(arg map_name)" />
     </include>
-
-    <!-- COCONUT UVC NAVIGATION -->
-    <!-- <include file="$(find coconut_bringup)/launch/coconut_navigation.launch">
-        <arg name="lua_name" value="$(arg lua_name)" />
-        <arg name="map_name" value="$(arg map_name)" />
-    </include> -->
     
     <!--SETUP COCONUT UVC FSM SUBSCRIBER NODE-->
-    <node name="coconut_fsm_subscriber_node"   pkg="coconut_gui"    type="coconut_fsm_subscriber.py"   output="screen">
+    <node name="coconut_fsm_subscriber_node"   pkg="coconut_task_fsm"    type="coconut_task_fsm_subscriber.py"   output="screen">
     </node>
 
     <!--SETUP COCONUT UVC PAUSE SUBSCRIBER NODE-->
-    <node name="coconut_pause_subscriber_node"   pkg="coconut_gui"    type="coconut_pause_subscriber.py"   output="screen">
+    <node name="coconut_pause_subscriber_node"   pkg="coconut_task_fsm"    type="coconut_task_pause_subscriber.py"   output="screen">
     </node>
 
     <!--SETUP COCONUT UVC CONTINUE SUBSCRIBER NODE-->
-    <node name="coconut_continue_subscriber_node"   pkg="coconut_gui"    type="coconut_continue_subscriber.py"   output="screen">
+    <node name="coconut_continue_subscriber_node"   pkg="coconut_task_fsm"    type="coconut_task_continue_subscriber.py"   output="screen">
     </node>
-
-    <!--SETUP COCONUT UVC ZONE SUBSCRIBER NODE-->
-    <!-- <node name="coconut_zone_subscriber_node"   pkg="coconut_gui"    type="coconut_zone_subscriber.py"   output="screen">
-    </node> -->
 
 </launch>
