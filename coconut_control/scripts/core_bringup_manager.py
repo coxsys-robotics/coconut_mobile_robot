@@ -13,7 +13,7 @@ from std_msgs.msg import UInt8, UInt8MultiArray
 
 """
 ***run this python file from startup with .sh via crontab
-run roscore and agv_v2_bringup.launch
+run roscore and any given .launch file
 wait for ros shutdown message from ros topic
     -work flow-
 shutdown message received --> kill all ros nodes --> shutdown bringup --> shutdown roscore -->
