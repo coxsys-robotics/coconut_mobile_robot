@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- SETUP COCONUT TASK FSM NODE -->
+    <node name="coconut_task_node"  pkg="coconut_task_fsm"    type="coconut_task_fsm.py"  output="screen"/>
+
+</launch>
+
