@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <launch>
     
-    <arg name="lua_name" default="fortuna_4th_floor"/>
-    <arg name="map_name" default="fortuna_4th_floor"/>
+    <arg name="lua_name" default="coxsys"/>
+    <arg name="map_name" default="coxsys"/>
     
-    <!-- COCONUT UVC NAVIGATION -->
+    <!-- COCONUT NAVIGATION -->
     <include file="$(find coconut_bringup)/launch/coconut_navigation.launch">
         <arg name="lua_name" value="$(arg lua_name)" />
         <arg name="map_name" value="$(arg map_name)" />
     </include>
     
-    <!--SETUP COCONUT UVC FSM SUBSCRIBER NODE-->
+    <!--SETUP COCONUT FSM SUBSCRIBER NODE-->
     <node name="coconut_fsm_subscriber_node"   pkg="coconut_task_fsm"    type="coconut_task_fsm_subscriber.py"   output="screen">
     </node>
 
-    <!--SETUP COCONUT UVC PAUSE SUBSCRIBER NODE-->
+    <!--SETUP COCONUT PAUSE SUBSCRIBER NODE-->
     <node name="coconut_pause_subscriber_node"   pkg="coconut_task_fsm"    type="coconut_task_pause_subscriber.py"   output="screen">
     </node>
 
-    <!--SETUP COCONUT UVC CONTINUE SUBSCRIBER NODE-->
+    <!--SETUP COCONUT CONTINUE SUBSCRIBER NODE-->
     <node name="coconut_continue_subscriber_node"   pkg="coconut_task_fsm"    type="coconut_task_continue_subscriber.py"   output="screen">
     </node>
 
